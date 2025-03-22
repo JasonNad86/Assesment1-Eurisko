@@ -5,13 +5,12 @@ export class LRUCache {
 
     constructor(capacity: number) {
         this.capacity = capacity;
-        this.map = new Map();  // Stores key-value pairs
-        this.order = [];       // Stores the order of keys (most recent at the start)
+        this.map = new Map();  
+        this.order = []; 
     }
 
-    // Get the value from cache
     get(key: number): number | null {
-        // If the key doesn't exist in the cache, return null
+        // If the key doesn't exist in the cache, we return null
         if (!this.map.has(key)) return null;
 
         // Move the accessed key to the front (most recent)
@@ -19,7 +18,6 @@ export class LRUCache {
         return this.map.get(key)!;
     }
 
-    // Put a key-value pair in the cache
     put(key: number, value: number): void {
         // If the key already exists, update its value and move it to the front
         if (this.map.has(key)) {
@@ -37,7 +35,7 @@ export class LRUCache {
         }
     }
 
-    // Helper function to move a key to the front (most recent)
+    // Helper function to move key to the front (most recent)
     public _moveToFront(key: number): void {
         // Remove the key from the order array
         const index = this.order.indexOf(key);
